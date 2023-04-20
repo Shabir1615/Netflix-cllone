@@ -1,15 +1,17 @@
 function validation(){
     var name = document.getElementById('name').value
+    var subject = document.getElementById('subject').value
     var email = document.getElementById('email').value
     var message = document.getElementById('message').value
     var nameValidation = /^[a-zA-Z ]*$/;
     reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     email_result = reg.test(email);
 
-    if(name == ''){
-      alert("Enter a valid name please");
-      return false
-    }else if(name.length<=3){
+    // if(name == ''){
+    //   alert("Enter a valid name please");
+    //   return false
+    // }else 
+    if(name.length<=3){
       alert("The name must be atleast 3 character")
       return false
     }  else if (!nameValidation.test(name) ) {
@@ -19,6 +21,19 @@ function validation(){
     else{
       document.getElementById('name').innerHTML=""
       name = true
+    }
+
+    if(subject.length<=5){
+      alert("The subject must be atleast 5 character")
+      return false
+    }
+    // }  else if (!nameValidation.test(name) ) {
+    //   alert("Invalid characters");
+    //   return false
+    
+    else{
+      document.getElementById('subject').innerHTML=""
+      subject = true
     }
 
    
@@ -56,6 +71,14 @@ function validation(){
         let name = $(this).val();
         $("#name").val(name.trimStart())
       });
+
+
+      $("#subject").on("keyup", function(){
+        let subject = $(this).val();
+        $("#subject").val(subject.trimStart())
+      });
+
+
 
 
     $("#contact-form").submit((e)=>{
