@@ -1,7 +1,7 @@
 function validation(){
     var name = document.getElementById('name').value
-    var subject = document.getElementById('subject').value
     var email = document.getElementById('email').value
+    var subject = document.getElementById('subject').value
     var message = document.getElementById('message').value
     var nameValidation = /^[a-zA-Z ]*$/;
     reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -23,24 +23,10 @@ function validation(){
       name = true
     }
 
-    if(subject.length<=5){
-      alert("The subject must be atleast 5 character")
-      return false
-    }
-    // }  else if (!nameValidation.test(name) ) {
-    //   alert("Invalid characters");
-    //   return false
-    
-    else{
-      document.getElementById('subject').innerHTML=""
-      subject = true
-    }
-
-   
     if(email == ''){
       alert("Please enter your correct email")
-      return false
-    }else if(email.length<8){
+        return false}
+     else if(email.length<8){
       alert("Please enter your correct E-mail")
       return false
     } else if(!email_result){
@@ -52,10 +38,16 @@ function validation(){
       email = true
     }
 
-    if(message == ''){
-      alert("Message must not be Blank")
+    if(subject.length<=5){
+      alert("The subject must be atleast 5 character")
       return false
-    }else if(message.length<10){
+    }
+    else{
+      document.getElementById('subject').innerHTML=""
+      subject = true
+    }
+
+     if(message.length<10){
       alert("Message must be more than 10 char")
       return false
     }
@@ -79,11 +71,17 @@ function validation(){
       });
 
 
+      $("#message").on("keyup", function(){
+        let message = $(this).val();
+        $("#message").val(message.trimStart())
+      });
+
+
 
 
     $("#contact-form").submit((e)=>{
+      e.preventDefault()
       if(validation()){
-        e.preventDefault()
         $.ajax({
             url:"https://script.google.com/macros/s/AKfycbyEk9gUqoG2opANLBqkJTzwsEKp93WfabsfauDkhWUimxPzIMy-b2kqbdunNjE5mbGWdA/exec",
             data:$("#contact-form").serialize(),//converts the form data into json
